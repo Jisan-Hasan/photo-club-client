@@ -1,7 +1,10 @@
 import { Button, Navbar } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const Header = () => {
+    const {user} = useContext(AuthContext);
+    console.log(user);
     return (
         <Navbar className="my-4 shadow-sm" fluid={true} rounded={true}>
             <Navbar.Brand href="https://flowbite.com/">
