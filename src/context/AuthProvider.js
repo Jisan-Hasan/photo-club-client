@@ -56,7 +56,7 @@ const AuthProvider = ({children}) => {
         updateUserProfile,
     };
     return <div>
-        <AuthContext.Provider>
+        <AuthContext.Provider value={authInfo}>
             {children}
         </AuthContext.Provider>
     </div>;
