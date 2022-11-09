@@ -18,7 +18,7 @@ const ServiceCard = ({ service }) => {
                         details.length > 100 ? details.substring(0,100) + '...' : details
                     }
                 </p>
-                <Link>
+                <Link to={`/service/${_id}`}>
                     <Button>Details</Button>
                 </Link>
             </Card>

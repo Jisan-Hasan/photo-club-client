@@ -12,7 +12,7 @@ const AllServices = () => {
     return (
         <div>
             <h1 className="text-center my-5 text-5xl font-bold">All Services</h1>
-            <div className="mx-2 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-2">
+            <div className="mx-2 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-3">
                 {services.map((service) => (
                     <ServiceCard key={service._id} service={service} />
                 ))}
