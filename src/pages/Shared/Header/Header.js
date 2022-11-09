@@ -40,7 +40,7 @@ const Header = () => {
             </div>
             <Navbar.Collapse>
                 <Link className="hover:text-blue-600" to='/'>Home</Link>
-                <Link className="hover:text-blue-600" to='/services'>Services</Link>
+                <Link className="hover:text-blue-600" to='/allservices'>Services</Link>
                 <Link className="hover:text-blue-600" to='/blog'>Blog</Link>
                 {
                     user ? <>
