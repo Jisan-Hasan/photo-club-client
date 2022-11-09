@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
 
-const AllReview = ({ serviceId }) => {
+const AllReview = ({ serviceId, refresh, setRefresh }) => {
     const [reviews, setReviews] = useState([]);
+
     useEffect(() => {
         fetch(`http://localhost:5000/reviews/${serviceId}`)
             .then((res) => res.json())
             .then((data) => setReviews(data));
-    }, [serviceId]);
+    }, [serviceId, refresh]);
     return (
         <div>
             <h2 className="text-4xl font-bold text-center my-10">

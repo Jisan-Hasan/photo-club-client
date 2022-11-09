@@ -44,7 +44,7 @@ const Header = () => {
                 <Link className="hover:text-blue-600" to='/blog'>Blog</Link>
                 {
                     user ? <>
-                    <Link className="hover:text-blue-600">My Reviews</Link>
+                    <Link className="hover:text-blue-600" to='/myreviews'>My Reviews</Link>
                     <Link className="hover:text-blue-600" to='/addservice'>Add Service</Link>
                     </> : <></>
                 }

@@ -2,7 +2,7 @@ import { Button, Label, Textarea } from "flowbite-react";
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
-const ReviewForm = ({ service }) => {
+const ReviewForm = ({ service, refresh, setRefresh }) => {
     const { user } = useContext(AuthContext);
     // console.log(user);
     const handleAddReview = (e) => {
@@ -27,7 +27,10 @@ const ReviewForm = ({ service }) => {
             body: JSON.stringify(reviewInfo),
         })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {console.log(data)
+            if(data.insertedId){
+                setRefresh(!refresh);
+            }});
 
         e.target.reset();
     };
