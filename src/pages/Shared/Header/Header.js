@@ -1,10 +1,17 @@
 import { Button, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
 
 const Header = () => {
-    const {user} = useContext(AuthContext);
-    console.log(user);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+        logOut()
+            .then()
+            .catch((e) => console.log(e));
+    };
+    // console.log(user);
     return (
         <Navbar className="my-4 shadow-sm" fluid={true} rounded={true}>
             <Navbar.Brand href="https://flowbite.com/">
@@ -18,17 +25,29 @@ const Header = () => {
                 </span>
             </Navbar.Brand>
             <div className="flex md:order-2">
-                <Button>Get started</Button>
+                {user ? (
+                    <Button onClick={handleLogOut} color="failure" pill={true}>
+                        Sign Out
+                    </Button>
+                ) : (
+                    <Link to='/login'>
+                        <Button color="success" pill={true}>
+                            Login
+                        </Button>
+                    </Link>
+                )}
                 <Navbar.Toggle />
             </div>
             <Navbar.Collapse>
-                <Navbar.Link href="/navbars" active={true}>
-                    Home
-                </Navbar.Link>
-                <Navbar.Link href="/navbars">About</Navbar.Link>
-                <Navbar.Link href="/navbars">Services</Navbar.Link>
-                <Navbar.Link href="/navbars">Pricing</Navbar.Link>
-                <Navbar.Link href="/navbars">Contact</Navbar.Link>
+                <Link className="hover:text-blue-600" to='/'>Home</Link>
+                <Link className="hover:text-blue-600" to='/services'>Services</Link>
+                <Link className="hover:text-blue-600" to='/blog'>Blog</Link>
+                {
+                    user ? <>
+                    <Link className="hover:text-blue-600">My Reviews</Link>
+                    <Link className="hover:text-blue-600">Add Service</Link>
+                    </> : <></>
+                }
             </Navbar.Collapse>
         </Navbar>
     );

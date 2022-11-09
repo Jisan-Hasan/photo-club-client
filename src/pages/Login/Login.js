@@ -105,8 +105,8 @@ const Login = () => {
                         Sign In with Social Account
                     </h3>
                     <div className="grid grid-cols-2 gap-3 w-1/2 mx-auto">
-                        <Button gradientDuoTone="purpleToBlue">Google</Button>
-                        <Button gradientDuoTone="cyanToBlue">GitHub</Button>
+                        <Button onClick={handleGoogleSignIn} gradientDuoTone="purpleToBlue">Google</Button>
+                        <Button onClick={handleGithubSignIn} gradientDuoTone="cyanToBlue">GitHub</Button>
                     </div>
                 </div>
             </form>

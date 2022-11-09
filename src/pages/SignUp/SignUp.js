@@ -1,11 +1,17 @@
 import { Button, Label, TextInput } from 'flowbite-react';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 
 const SignUp = () => {
     const { createUser, error, setError, updateUserProfile } =
         useContext(AuthContext);
+
+        const navigate = useNavigate();
+
+        const location = useLocation();
+    
+        const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -21,6 +27,7 @@ const SignUp = () => {
                 form.reset();
                 setError("");
                 handleUpdateUserProfile(name);
+                navigate(from, {replace: true});
             })
             .catch((e) => {
                 // console.log(e);
