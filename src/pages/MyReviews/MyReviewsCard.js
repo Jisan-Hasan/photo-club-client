@@ -1,5 +1,6 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
     const { reviewerName, reviewerPhoto, review, serviceTitle, _id } =
@@ -32,7 +33,7 @@ const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
                         >
                             Delete
                         </Button>
-                        <Button color="warning">Edit</Button>
+                        <Link to={`/editreview/${_id}`}><Button color="warning">Edit</Button></Link>
                     </div>
                 </div>
                 <p className="mb-5 text-base text-gray-500 dark:text-gray-400 sm:text-lg">
