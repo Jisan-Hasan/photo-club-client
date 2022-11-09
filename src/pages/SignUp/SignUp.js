@@ -18,6 +18,7 @@ const SignUp = () => {
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
+        const photoURL = form.photo.value;
         const password = form.password.value;
 
         createUser(email, password)
@@ -26,7 +27,7 @@ const SignUp = () => {
                 // console.log(user);
                 form.reset();
                 setError("");
-                handleUpdateUserProfile(name);
+                handleUpdateUserProfile(name, photoURL);
                 navigate(from, {replace: true});
             })
             .catch((e) => {
@@ -36,9 +37,10 @@ const SignUp = () => {
 
         // console.log(name, photoURL, email, password);
     };
-    const handleUpdateUserProfile = (name) => {
+    const handleUpdateUserProfile = (name, photoURL) => {
         const profile = {
             displayName: name,
+            photoURL: photoURL,
         };
         updateUserProfile(profile)
             .then(() => {})
@@ -69,6 +71,17 @@ const SignUp = () => {
                         type="email"
                         name="email"
                         placeholder="name@gmail.com"
+                        required={true}
+                    />
+                </div>
+                <div>
+                    <div className="mb-2 block">
+                        <Label htmlFor="photo" value="Your photo URL" />
+                    </div>
+                    <TextInput
+                        id="photo"
+                        type="text"
+                        name="photo"
                         required={true}
                     />
                 </div>
