@@ -45,7 +45,7 @@ const Header = () => {
                 {
                     user ? <>
                     <Link className="hover:text-blue-600">My Reviews</Link>
-                    <Link className="hover:text-blue-600">Add Service</Link>
+                    <Link className="hover:text-blue-600" to='/addservice'>Add Service</Link>
                     </> : <></>
                 }
             </Navbar.Collapse>
