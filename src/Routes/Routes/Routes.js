@@ -29,7 +29,7 @@ export const routes = createBrowserRouter([
                 element: <SignUp />,
             },
             {
-                path: "/allservices",
+                path: "/services",
                 element: <AllServices />,
             },
             {
