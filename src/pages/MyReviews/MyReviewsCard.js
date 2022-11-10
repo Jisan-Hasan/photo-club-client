@@ -1,8 +1,11 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
+    const notify = (message) => toast(message);
     const { reviewerName, reviewerPhoto, review, serviceTitle, _id } =
         reviewInfo;
 
@@ -15,10 +18,10 @@ const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
                 console.log(data);
                 if (data.deletedCount) {
                     setRefresh(!refresh);
+                    notify("Review Deleted Successfully.");
                 }
             });
     };
-    const handleEdit = (id) => {};
     return (
         <div>
             <Card>
@@ -40,6 +43,7 @@ const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
                     {review}
                 </p>
             </Card>
+            <ToastContainer />
         </div>
     );
 };

@@ -12,7 +12,6 @@ const EmailSubscription = () => {
             </h1>
             <div className="flex justify-center mx-auto">
                 <TextInput
-                    id="email4"
                     type="email"
                     placeholder="Your Email Here"
                     required={true}

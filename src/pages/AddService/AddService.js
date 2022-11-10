@@ -1,8 +1,11 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddService = () => {
+    const notify = (message) => toast(message);
     const { user } = useContext(AuthContext);
     const handleAddService = (e) => {
         e.preventDefault();
@@ -24,7 +27,13 @@ const AddService = () => {
             body: JSON.stringify(service),
         })
             .then((res) => res.json())
-            .then((data) => console.log(data));
+            .then((data) => {
+                console.log(data);
+                if (data.insertedId) {
+                    notify("Service added Successfully.");
+                    e.target.reset();
+                }
+            });
     };
 
     return (
@@ -80,6 +89,7 @@ const AddService = () => {
             </div>
 
             <Button type="submit">Add Service</Button>
+            <ToastContainer />
         </form>
     );
 };

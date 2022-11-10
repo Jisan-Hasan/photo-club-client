@@ -1,8 +1,11 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const UpdateReview = () => {
+    const notify = (message) => toast(message);
     const reviewInfo = useLoaderData();
     const updatedReview = reviewInfo;
     const { _id, review, serviceTitle } = reviewInfo;
@@ -21,6 +24,9 @@ const UpdateReview = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
+                if(data.modifiedCount){
+                    notify("Updated Successfully.");
+                }
             });
     };
     return (
@@ -55,6 +61,7 @@ const UpdateReview = () => {
                     Update
                 </Button>
             </form>
+            <ToastContainer />
         </div>
     );
 };
