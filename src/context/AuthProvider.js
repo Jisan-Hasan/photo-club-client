@@ -16,20 +16,25 @@ const AuthProvider = ({children}) => {
         return signInWithPopup(auth, provider);
     };
 
+    // create user with email & password
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     };
 
+    // sign in user with email & password
     const signIn = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
     };
 
+    // update user profile
     const updateUserProfile = (profile) => {
         return updateProfile(auth.currentUser, profile);
     };
 
+
+    // logout the user
     const logOut = () => {
         setLoading(true);
         return signOut(auth);
@@ -55,6 +60,7 @@ const AuthProvider = ({children}) => {
         signIn,
         updateUserProfile,
     };
+    
     return <div>
         <AuthContext.Provider value={authInfo}>
             {children}

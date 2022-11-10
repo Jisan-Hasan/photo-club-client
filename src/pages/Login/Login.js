@@ -18,13 +18,16 @@ const Login = () => {
 
     useTitle("Login");
 
+    // User sign in
     const handleSubmit = (event) => {
         event.preventDefault();
         setSpinner(true);
+        // get form data
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
 
+        // sign in user
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
@@ -58,6 +61,8 @@ const Login = () => {
         // console.log(email, password);
     };
 
+
+    // google signin
     const googleProvider = new GoogleAuthProvider();
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)

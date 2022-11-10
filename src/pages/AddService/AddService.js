@@ -6,9 +6,14 @@ import "react-toastify/dist/ReactToastify.css";
 import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
+    // toast function notify
     const notify = (message) => toast(message);
+
     const { user } = useContext(AuthContext);
+
     useTitle("Add Service");
+
+    // Service add
     const handleAddService = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -20,7 +25,8 @@ const AddService = () => {
             details: form.details.value,
         };
         // console.log(service);
-
+        
+        // post service 
         fetch("http://localhost:5000/addservice", {
             method: "POST",
             headers: {

@@ -15,12 +15,16 @@ const Banner = () => {
                     PHOTOGRAPHY WITH STYLE
                 </h3>
                 <p className="text-lg font-semibold text-gray-600">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Esse adipisci totam
+                    We strive to bring a sense of happiness and dedication in
+                    our work with us wherever we go.
                     <br />
-                    eum odit cum sit nulla aliquam earum quas deserunt?
+                    Each film we create is authentic and unique - created by you and your loved ones.
                 </p>
-                <Button className="bg-emerald-400 px-6 py-2 mt-8 text-white" color="" pill={true}>
+                <Button
+                    className="bg-emerald-400 px-6 py-2 mt-8 text-white"
+                    color=""
+                    pill={true}
+                >
                     READ MORE
                 </Button>
             </div>

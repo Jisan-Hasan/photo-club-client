@@ -16,9 +16,12 @@ const SignUp = () => {
 
     const from = location.state?.from?.pathname || "/";
 
+
+    // Register a user
     const handleSubmit = (event) => {
         event.preventDefault();
         setSpinner(true);
+        // get form data
         const form = event.target;
         // collect form data
         const name = form.name.value;

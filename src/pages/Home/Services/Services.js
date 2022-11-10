@@ -1,4 +1,4 @@
-import { Button } from "flowbite-react";
+import { Button, Footer } from "flowbite-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ServiceCard from "./ServiceCard";
@@ -12,11 +12,14 @@ const Services = () => {
             .catch((e) => console.log(e));
     }, []);
     return (
+        <>
+        <Footer.Divider />
         <div>
             <h1 className="text-4xl font-bold text-center mt-20 mb-8">
                 Most Reliable Services
             </h1>
             <div className="md:flex md:justify-around mx-2">
+                
                 {services.map((service) => (
                     <ServiceCard key={service._id} service={service} />
                 ))}
@@ -27,6 +30,7 @@ const Services = () => {
                 </Link>
             </div>
         </div>
+        </>
     );
 };
 

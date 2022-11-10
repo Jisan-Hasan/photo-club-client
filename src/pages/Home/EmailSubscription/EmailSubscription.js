@@ -1,8 +1,10 @@
-import { Button, TextInput } from "flowbite-react";
+import { Button, Footer, TextInput } from "flowbite-react";
 import React from "react";
 
 const EmailSubscription = () => {
     return (
+        <>
+        <Footer.Divider />
         <div className="text-center my-24">
             <h3 className="text-xl uppercase md:font-semibold">
                 Email Subscription
@@ -19,6 +21,7 @@ const EmailSubscription = () => {
                 <Button>Subscribe</Button>
             </div>
         </div>
+        </>
     );
 };
 
