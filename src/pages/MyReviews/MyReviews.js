@@ -5,12 +5,22 @@ import MyReviewsCard from "./MyReviewsCard";
 
 const MyReviews = () => {
     useTitle("My Reviews");
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews/${user?.uid}`)
-            .then((res) => res.json())
+        fetch(`http://localhost:5000/myreviews/${user?.uid}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem(
+                    "photoClubToken"
+                )}`,
+            },
+        })
+            .then((res) => {
+                if(res.status === 401 || res.status === 403){
+                    // logOut().then().catch(e => console.log(e))
+                }
+                return res.json()})
             .then((data) => setReviews(data));
     }, [user, refresh]);
     console.log(reviews);

@@ -1,4 +1,5 @@
-import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import { data } from "autoprefixer";
+import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -25,6 +26,22 @@ const Login = () => {
         signIn(email, password)
             .then((result) => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email,
+                };
+                // get jwt token
+                fetch("http://localhost:5000/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        localStorage.setItem('photoClubToken', data.token);
+                    });
                 // console.log(user);
                 form.reset();
                 setError("");
@@ -52,19 +69,7 @@ const Login = () => {
                 setError(e.message);
             });
     };
-    const githubProvider = new GithubAuthProvider();
-    const handleGithubSignIn = () => {
-        providerLogin(githubProvider)
-            .then((result) => {
-                const user = result.user;
-                // console.log(user);
-                setError("");
-                navigate(from, { replace: true });
-            })
-            .catch((e) => {
-                setError(e.message);
-            });
-    };
+
     return (
         <div className="md:w-1/2 lg:w-1/3 mx-2 md:mx-auto my-28">
             <h1 className="text-center text-4xl font-extrabold my-5">Login</h1>
@@ -107,9 +112,14 @@ const Login = () => {
                     <h3 className="text-sm mb-5">
                         Sign In with Social Account
                     </h3>
-                    <div className="grid grid-cols-2 gap-3 w-1/2 mx-auto">
-                        <Button onClick={handleGoogleSignIn} gradientDuoTone="purpleToBlue">Google</Button>
-                        <Button onClick={handleGithubSignIn} gradientDuoTone="cyanToBlue">GitHub</Button>
+                    <div className="w-1/2 mx-auto">
+                        <Button
+                            className="mx-auto"
+                            onClick={handleGoogleSignIn}
+                            gradientDuoTone="purpleToBlue"
+                        >
+                            Google
+                        </Button>
                     </div>
                 </div>
             </form>
