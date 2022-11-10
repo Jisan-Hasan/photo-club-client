@@ -20,11 +20,13 @@ const SignUp = () => {
         event.preventDefault();
         setSpinner(true);
         const form = event.target;
+        // collect form data
         const name = form.name.value;
         const email = form.email.value;
         const photoURL = form.photo.value;
         const password = form.password.value;
 
+        // create user
         createUser(email, password)
             .then((result) => {
                 const user = result.user;
