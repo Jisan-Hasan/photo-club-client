@@ -7,7 +7,7 @@ const Banner = () => {
         <div className="md:grid md:grid-cols-2">
             <div className="self-center ml-2">
                 <h1 className="text-4xl md:text-8xl font-extrabold">
-                    PICKY
+                    PHOTO CLUB
                     <br />
                     PHOTOGRAPHY
                 </h1>

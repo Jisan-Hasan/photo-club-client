@@ -7,7 +7,6 @@ const FooterSection = () => {
         <div className="mt-8">
             <Footer.Divider />
             <Footer className="shadow-none">
-                
                 <div className="w-full">
                     <div className="md:flex md:justify-between w-full grid grid-cols-2">
                         <div>

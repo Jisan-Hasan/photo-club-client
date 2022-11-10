@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <Navbar className="my-4 shadow-sm" fluid={true} rounded={true}>
             <Link to="/">
-                <span className="self-center text-blue-600 whitespace-nowrap text-3xl font-bold dark:text-white">
+                <span className="self-center text-emerald-600 whitespace-nowrap text-3xl font-bold dark:text-white">
                     PhotoClub
                 </span>
             </Link>
