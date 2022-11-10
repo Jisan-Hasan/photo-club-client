@@ -2,11 +2,13 @@ import { Card } from "flowbite-react";
 import React, { useContext, useState } from "react";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import AllReview from "./AllReview";
 import ReviewForm from "./ReviewForm";
 
 const ServiceDetails = () => {
     const [refresh, setRefresh] = useState(false);
+    useTitle("Service Details");
     const { user } = useContext(AuthContext);
     const location = useLocation();
     const service = useLoaderData();
@@ -39,7 +41,11 @@ const ServiceDetails = () => {
 
             <div className="my-10">
                 {user ? (
-                    <ReviewForm refresh={refresh} setRefresh={setRefresh} service={service} />
+                    <ReviewForm
+                        refresh={refresh}
+                        setRefresh={setRefresh}
+                        service={service}
+                    />
                 ) : (
                     <div className="text-center">
                         <p>
@@ -56,7 +62,11 @@ const ServiceDetails = () => {
                     </div>
                 )}
             </div>
-            <AllReview refresh={refresh} setRefresh={setRefresh} serviceId={_id} />
+            <AllReview
+                refresh={refresh}
+                setRefresh={setRefresh}
+                serviceId={_id}
+            />
         </div>
     );
 };

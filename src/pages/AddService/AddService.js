@@ -3,10 +3,12 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
     const notify = (message) => toast(message);
     const { user } = useContext(AuthContext);
+    useTitle("Add Service");
     const handleAddService = (e) => {
         e.preventDefault();
         const form = e.target;
