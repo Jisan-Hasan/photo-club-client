@@ -1,12 +1,13 @@
 import { data } from "autoprefixer";
 import { GoogleAuthProvider } from "firebase/auth";
-import { Button, Label, TextInput } from "flowbite-react";
-import React, { useContext } from "react";
+import { Button, Label, Spinner, TextInput } from "flowbite-react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const Login = () => {
+    const [spinner, setSpinner] = useState(false);
     const { providerLogin, signIn, error, setError } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setSpinner(true);
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -40,11 +42,12 @@ const Login = () => {
                     .then((res) => res.json())
                     .then((data) => {
                         console.log(data);
-                        localStorage.setItem('photoClubToken', data.token);
+                        localStorage.setItem("photoClubToken", data.token);
                     });
                 // console.log(user);
                 form.reset();
                 setError("");
+                setSpinner(false);
                 navigate(`${from}`, { replace: true });
             })
             .catch((e) => {
@@ -60,6 +63,22 @@ const Login = () => {
         providerLogin(googleProvider)
             .then((result) => {
                 const user = result.user;
+                const currentUser = {
+                    email: user.email,
+                };
+                // get jwt token
+                fetch("http://localhost:5000/jwt", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify(currentUser),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        console.log(data);
+                        localStorage.setItem("photoClubToken", data.token);
+                    });
                 // console.log(user);
                 setError("");
                 navigate(from, { replace: true });
@@ -107,6 +126,14 @@ const Login = () => {
                 </p>
 
                 <Button type="submit">Login</Button>
+
+                <div className={`${spinner ? "text-center" : "hidden"}`}>
+                <Spinner
+                    color="failure"
+                    aria-label="Extra large spinner example"
+                    size="xl"
+                />
+            </div>
 
                 <div className="text-center my-10">
                     <h3 className="text-sm mb-5">

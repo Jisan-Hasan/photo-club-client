@@ -1,22 +1,24 @@
-import { Button, Label, TextInput } from 'flowbite-react';
-import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
-import useTitle from '../../hooks/useTitle';
+import { Button, Label, Spinner, TextInput } from "flowbite-react";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
+    const [spinner, setSpinner] = useState(false);
     const { createUser, error, setError, updateUserProfile } =
         useContext(AuthContext);
-        useTitle("Register");
+    useTitle("Register");
 
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
-        const location = useLocation();
-    
-        const from = location.state?.from?.pathname || "/";
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setSpinner(true);
         const form = event.target;
         const name = form.name.value;
         const email = form.email.value;
@@ -30,12 +32,13 @@ const SignUp = () => {
                 form.reset();
                 setError("");
                 handleUpdateUserProfile(name, photoURL);
-                navigate(from, {replace: true});
+                navigate(from, { replace: true });
             })
             .catch((e) => {
                 // console.log(e);
                 setError(e.message);
             });
+        setSpinner(false);
 
         // console.log(name, photoURL, email, password);
     };
@@ -50,7 +53,9 @@ const SignUp = () => {
     };
     return (
         <div className="md:w-1/2 lg:w-1/3 mx-2 md:mx-auto my-28">
-            <h1 className="text-center text-4xl font-extrabold my-5">Register</h1>
+            <h1 className="text-center text-4xl font-extrabold my-5">
+                Register
+            </h1>
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <div>
                     <div className="mb-2 block">
@@ -109,7 +114,13 @@ const SignUp = () => {
 
                 <Button type="submit">Register</Button>
 
-                
+                <div className={`${spinner ? "text-center" : "hidden"}`}>
+                    <Spinner
+                        color="failure"
+                        aria-label="Extra large spinner example"
+                        size="xl"
+                    />
+                </div>
             </form>
         </div>
     );
