@@ -9,7 +9,7 @@ const MyReviews = () => {
     const [reviews, setReviews] = useState([]);
     const [refresh, setRefresh] = useState(false);
     useEffect(() => {
-        fetch(`http://localhost:5000/myreviews/${user?.uid}`, {
+        fetch(`https://service-server-self.vercel.app/myreviews/${user?.uid}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem(
                     "photoClubToken"

@@ -1,7 +1,7 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
-import React, { useState } from "react";
+import React from "react";
 import { useLoaderData } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import useTitle from "../../hooks/useTitle";
 
@@ -16,7 +16,7 @@ const UpdateReview = () => {
         e.preventDefault();
         updatedReview.review = e.target.review.value;
         console.log(updatedReview);
-        fetch(`http://localhost:5000/review/${_id}`, {
+        fetch(`https://service-server-self.vercel.app/review/${_id}`, {
             method: "PUT",
             headers: {
                 "content-type": "application/json",

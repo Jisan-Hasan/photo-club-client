@@ -1,8 +1,8 @@
 import { Button, Card } from "flowbite-react";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
-  import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
     const notify = (message) => toast(message);
@@ -10,7 +10,7 @@ const MyReviewsCard = ({ reviewInfo, refresh, setRefresh }) => {
         reviewInfo;
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/myreviews/${_id}`, {
+        fetch(`https://service-server-self.vercel.app/myreviews/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())

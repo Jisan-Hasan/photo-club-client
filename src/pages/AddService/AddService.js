@@ -1,8 +1,8 @@
 import { Button, Label, Textarea, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
-import { AuthContext } from "../../context/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AuthContext } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
@@ -25,9 +25,9 @@ const AddService = () => {
             details: form.details.value,
         };
         // console.log(service);
-        
+
         // post service 
-        fetch("http://localhost:5000/addservice", {
+        fetch("https://service-server-self.vercel.app/addservice", {
             method: "POST",
             headers: {
                 "content-type": "application/json",

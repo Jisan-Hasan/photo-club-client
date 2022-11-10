@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, Spinner, TextInput } from "flowbite-react";
 import React, { useContext, useState } from "react";
@@ -35,7 +34,7 @@ const Login = () => {
                     email: user.email,
                 };
                 // get jwt token
-                fetch("http://localhost:5000/jwt", {
+                fetch("https://service-server-self.vercel.app/jwt", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",
@@ -72,7 +71,7 @@ const Login = () => {
                     email: user.email,
                 };
                 // get jwt token
-                fetch("http://localhost:5000/jwt", {
+                fetch("https://service-server-self.vercel.app/jwt", {
                     method: "POST",
                     headers: {
                         "content-type": "application/json",

@@ -1,5 +1,5 @@
 import { Button, Label, Textarea } from "flowbite-react";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const ReviewForm = ({ service, refresh, setRefresh }) => {
@@ -19,7 +19,7 @@ const ReviewForm = ({ service, refresh, setRefresh }) => {
         };
         // console.log(reviewInfo);
 
-        fetch("http://localhost:5000/addreview", {
+        fetch("https://service-server-self.vercel.app/addreview", {
             method: "POST",
             headers: {
                 "content-type": "application/json",
